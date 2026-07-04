@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://des73yrl4ijiw"]
+
+[ext_resource type="PackedScene" uid="uid://ejmbjefjqqbq" path="res://scenes/cable.tscn" id="1_nnsk1"]
+
+[node name="World" type="Node2D" unique_id=1704965486]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1508770462]
+offset_right = 533.0
+offset_bottom = 400.0
+color = Color(0.462368, 0.46274263, 0.5334489, 1)
+
+[node name="Cable" parent="." unique_id=1396107194 instance=ExtResource("1_nnsk1")]
+position = Vector2(226, 93)

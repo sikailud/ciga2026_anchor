@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ejmbjefjqqbq"]
+
+[ext_resource type="Script" uid="uid://cxf5rew18br7c" path="res://scripts/cable.gd" id="1_rj3a4"]
+
+[node name="Cable" type="Line2D" unique_id=641621345]
+script = ExtResource("1_rj3a4")
