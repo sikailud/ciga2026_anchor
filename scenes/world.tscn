@@ -1,13 +1,42 @@
 [gd_scene format=3 uid="uid://des73yrl4ijiw"]
 
-[ext_resource type="PackedScene" uid="uid://ejmbjefjqqbq" path="res://scenes/cable.tscn" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://bddsgndn4bnuy" path="res://scripts/world.gd" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://bldgw3haju8o" path="res://scenes/pole.tscn" id="2_rwgxs"]
 
 [node name="World" type="Node2D" unique_id=1704965486]
+script = ExtResource("1_nnsk1")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1508770462]
-offset_right = 533.0
-offset_bottom = 400.0
-color = Color(0.462368, 0.46274263, 0.5334489, 1)
+offset_right = 400.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.827451, 0.627451, 0.40784314, 1)
 
-[node name="Cable" parent="." unique_id=1396107194 instance=ExtResource("1_nnsk1")]
-position = Vector2(226, 93)
+[node name="Ground" type="Node2D" parent="." unique_id=205405838]
+
+[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=5865245]
+offset_top = 220.0
+offset_right = 400.0
+offset_bottom = 520.0
+color = Color(0.5019608, 0.28627452, 0.22745098, 1)
+
+[node name="Pole" parent="." unique_id=1435477125 instance=ExtResource("2_rwgxs")]
+position = Vector2(37, 253)
+
+[node name="Pole2" parent="." unique_id=1526762483 instance=ExtResource("2_rwgxs")]
+position = Vector2(98, 239)
+
+[node name="Pole3" parent="." unique_id=1729527448 instance=ExtResource("2_rwgxs")]
+position = Vector2(183, 250)
+
+[node name="Pole4" parent="." unique_id=363234456 instance=ExtResource("2_rwgxs")]
+position = Vector2(234, 244)
+
+[node name="Pole5" parent="." unique_id=734021415 instance=ExtResource("2_rwgxs")]
+position = Vector2(152, 277)
+
+[node name="Pole6" parent="." unique_id=1473312231 instance=ExtResource("2_rwgxs")]
+position = Vector2(335, 296)
+
+[node name="Pole7" parent="." unique_id=943801513 instance=ExtResource("2_rwgxs")]
+position = Vector2(196, 292)

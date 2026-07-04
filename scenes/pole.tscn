@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bldgw3haju8o"]
+
+[ext_resource type="Script" uid="uid://qple1s87vgh" path="res://scripts/pole.gd" id="1_yc8l7"]
+[ext_resource type="Texture2D" uid="uid://ck7ookqinlvoq" path="res://textures/pole_steel.png" id="2_yc8l7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kchvy"]
+radius = 14.0
+
+[node name="Pole" type="Area2D" unique_id=1435477125]
+script = ExtResource("1_yc8l7")
+
+[node name="AnchorLeft" type="Marker2D" parent="." unique_id=817969880]
+position = Vector2(-10, -96)
+
+[node name="AnchorRight" type="Marker2D" parent="." unique_id=1461166616]
+position = Vector2(9, -97)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071967910]
+position = Vector2(0, -52)
+texture = ExtResource("2_yc8l7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1565383647]
+position = Vector2(0, -96)
+shape = SubResource("CircleShape2D_kchvy")
