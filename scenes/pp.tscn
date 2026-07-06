@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bv01upbcpttcr"]
+
+[ext_resource type="Script" uid="uid://dp1rkss66psv5" path="res://scripts/pp.gd" id="1_0of0d"]
+[ext_resource type="Texture2D" uid="uid://bbjotljme827x" path="res://textures/pp.png" id="1_fk06l"]
+[ext_resource type="AudioStream" uid="uid://d1q6ty6esvy4p" path="res://sounds/humen_wow.wav" id="2_v7hhx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7hhx"]
+size = Vector2(8, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8u7l"]
+radius = 136.0
+
+[sub_resource type="Animation" id="Animation_v7hhx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8hhbf"]
+resource_name = "Wow"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yr8g1"]
+_data = {
+&"RESET": SubResource("Animation_v7hhx"),
+&"Wow": SubResource("Animation_8hhbf")
+}
+
+[node name="Pp" type="Area2D" unique_id=61796810]
+script = ExtResource("1_0of0d")
+pickup_sfx = ExtResource("2_v7hhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=611772147]
+shape = SubResource("RectangleShape2D_v7hhx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=59374482]
+texture = ExtResource("1_fk06l")
+
+[node name="View" type="Area2D" parent="." unique_id=757499040]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="View" unique_id=1237023670]
+shape = SubResource("CircleShape2D_j8u7l")
+debug_color = Color(0, 0.6, 0.69803923, 0.011764706)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=11638785]
+libraries/ = SubResource("AnimationLibrary_yr8g1")

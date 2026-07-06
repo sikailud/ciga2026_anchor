@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://deka77de4a36o"]
+
+[ext_resource type="Texture2D" uid="uid://sflpgw0pd88" path="res://textures/shit.png" id="1_2sqth"]
+[ext_resource type="Script" uid="uid://cr0p2o1pum3j1" path="res://scripts/shit.gd" id="1_bxddc"]
+[ext_resource type="AudioStream" uid="uid://dpjyngeu37sgm" path="res://sounds/birds_shit.wav" id="2_81su3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kchvy"]
+radius = 2.0
+
+[node name="Shit" type="Area2D" unique_id=957193843]
+z_index = -3
+script = ExtResource("1_bxddc")
+splat_sfx = ExtResource("2_81su3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1196349667]
+texture = ExtResource("1_2sqth")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=931109908]
+shape = SubResource("CircleShape2D_kchvy")

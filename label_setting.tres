@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://c5s8mpdgftdgy"]
+
+[ext_resource type="FontFile" uid="uid://qqqr2457iob8" path="res://misc/schoolbell.ttf" id="1_q868j"]
+
+[resource]
+font = ExtResource("1_q868j")
+font_size = 18
+font_color = Color(0.17254902, 0.3647059, 0.7372549, 1)

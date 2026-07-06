@@ -1,42 +1,201 @@
 [gd_scene format=3 uid="uid://des73yrl4ijiw"]
 
 [ext_resource type="Script" uid="uid://bddsgndn4bnuy" path="res://scripts/world.gd" id="1_nnsk1"]
+[ext_resource type="AudioStream" uid="uid://bcj44nvwww55v" path="res://sounds/connected.wav" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bldgw3haju8o" path="res://scenes/pole.tscn" id="2_rwgxs"]
+[ext_resource type="AudioStream" uid="uid://e5tggvqy3rpu" path="res://sounds/unconnected.wav" id="3_qfnet"]
+[ext_resource type="AudioStream" uid="uid://b7iuj8bojgey2" path="res://sounds/buy.wav" id="4_qfnet"]
+[ext_resource type="AudioStream" uid="uid://c7wuer4i6c1r8" path="res://sounds/bgm.mp3" id="6_q5onr"]
+[ext_resource type="PackedScene" uid="uid://bv01upbcpttcr" path="res://scenes/pp.tscn" id="7_i7141"]
+[ext_resource type="Texture2D" uid="uid://bli5iy6emvsro" path="res://textures/bg.png" id="8_4mrxx"]
+[ext_resource type="Script" uid="uid://d2f3ppt56v244" path="res://scripts/rule_board.gd" id="9_7r4gi"]
+[ext_resource type="Texture2D" uid="uid://cvuauvc2umeg3" path="res://textures/rule_board.png" id="9_w7kh3"]
+[ext_resource type="LabelSettings" uid="uid://c5s8mpdgftdgy" path="res://label_setting.tres" id="11_e3hyu"]
+[ext_resource type="FontFile" uid="uid://qqqr2457iob8" path="res://misc/schoolbell.ttf" id="12_q5onr"]
+
+[sub_resource type="Animation" id="Animation_q5onr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.17254902, 0.3647059, 0.7372549, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.1738584, 0.36598563, 0.7385873, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jhx03"]
+resource_name = "fadein"
+length = 9.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.7333333, 5.5666666),
+"transitions": PackedFloat32Array(1, 1, 0.3298769),
+"update": 0,
+"values": [Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.4333334, 6.0333333),
+"transitions": PackedFloat32Array(1, 1, 0.4999999),
+"update": 0,
+"values": [Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
+_data = {
+&"RESET": SubResource("Animation_q5onr"),
+&"fadein": SubResource("Animation_jhx03")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kchvy"]
+size = Vector2(79, 68)
+
+[sub_resource type="GDScript" id="GDScript_kchvy"]
+script/source = "extends Label
+
+func _ready() -> void:
+	Score.score_changed.connect(_on_score_changed)
+	text = str(Score.score)
+
+func _on_score_changed(new_score: int) -> void:
+	text = str(new_score)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_q5onr"]
+font = ExtResource("12_q5onr")
+font_size = 11
+font_color = Color(0.1738584, 0.36598563, 0.7385873, 1)
 
 [node name="World" type="Node2D" unique_id=1704965486]
 script = ExtResource("1_nnsk1")
+sfx_connected = ExtResource("2_71j4m")
+sfx_unconnected = ExtResource("3_qfnet")
+sfx_buy = ExtResource("4_qfnet")
+starting_bird_count = 49
 
-[node name="Background" type="ColorRect" parent="." unique_id=1508770462]
-offset_right = 400.0
-offset_bottom = 300.0
-mouse_filter = 2
-color = Color(0.827451, 0.627451, 0.40784314, 1)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1221708474]
+libraries/ = SubResource("AnimationLibrary_o8fc1")
 
-[node name="Ground" type="Node2D" parent="." unique_id=205405838]
+[node name="Background" type="Sprite2D" parent="." unique_id=1266094538]
+z_index = -99
+position = Vector2(200, 150)
+texture = ExtResource("8_4mrxx")
 
-[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=5865245]
-offset_top = 220.0
-offset_right = 400.0
-offset_bottom = 520.0
-color = Color(0.5019608, 0.28627452, 0.22745098, 1)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1819480577]
+stream = ExtResource("6_q5onr")
+volume_db = -16.0
+autoplay = true
+
+[node name="RuleBoardTrigger" type="Area2D" parent="." unique_id=1555468599]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RuleBoardTrigger" unique_id=1336842355]
+position = Vector2(39.5, 34)
+shape = SubResource("RectangleShape2D_kchvy")
+
+[node name="ScoreBoard" type="Label" parent="." unique_id=2115842254]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 28.0
+text = "fn~"
+label_settings = ExtResource("11_e3hyu")
+script = SubResource("GDScript_kchvy")
+metadata/_edit_use_anchors_ = true
+
+[node name="RuleBoard" type="Sprite2D" parent="." unique_id=799391261]
+position = Vector2(81, 17)
+scale = Vector2(0.9999999, 1.0000002)
+texture = ExtResource("9_w7kh3")
+script = ExtResource("9_7r4gi")
 
 [node name="Pole" parent="." unique_id=1435477125 instance=ExtResource("2_rwgxs")]
-position = Vector2(37, 253)
+position = Vector2(232, 238)
 
-[node name="Pole2" parent="." unique_id=1526762483 instance=ExtResource("2_rwgxs")]
-position = Vector2(98, 239)
+[node name="Pole2" parent="." unique_id=1612913023 instance=ExtResource("2_rwgxs")]
+position = Vector2(67, 251)
 
-[node name="Pole3" parent="." unique_id=1729527448 instance=ExtResource("2_rwgxs")]
-position = Vector2(183, 250)
+[node name="Pole3" parent="." unique_id=1433250406 instance=ExtResource("2_rwgxs")]
+position = Vector2(126, 297)
 
-[node name="Pole4" parent="." unique_id=363234456 instance=ExtResource("2_rwgxs")]
-position = Vector2(234, 244)
+[node name="Pole4" parent="." unique_id=149064875 instance=ExtResource("2_rwgxs")]
+position = Vector2(364, 214)
 
-[node name="Pole5" parent="." unique_id=734021415 instance=ExtResource("2_rwgxs")]
-position = Vector2(152, 277)
+[node name="Pole5" parent="." unique_id=391250206 instance=ExtResource("2_rwgxs")]
+position = Vector2(321, 294)
 
-[node name="Pole6" parent="." unique_id=1473312231 instance=ExtResource("2_rwgxs")]
-position = Vector2(335, 296)
+[node name="Pp" parent="Pole5" unique_id=61796810 instance=ExtResource("7_i7141")]
+position = Vector2(-128, -34)
 
-[node name="Pole7" parent="." unique_id=943801513 instance=ExtResource("2_rwgxs")]
-position = Vector2(196, 292)
+[node name="Pp2" parent="Pole5" unique_id=442531718 instance=ExtResource("7_i7141")]
+position = Vector2(-85, -9)
+
+[node name="Pp3" parent="Pole5" unique_id=2074644534 instance=ExtResource("7_i7141")]
+position = Vector2(-182, -75)
+
+[node name="Pp4" parent="Pole5" unique_id=921500142 instance=ExtResource("7_i7141")]
+position = Vector2(-243, -85)
+
+[node name="Pp2" parent="." unique_id=1898784642 instance=ExtResource("7_i7141")]
+position = Vector2(301, 278)
+
+[node name="Pp3" parent="." unique_id=518206784 instance=ExtResource("7_i7141")]
+position = Vector2(32, 280)
+
+[node name="Pp4" parent="." unique_id=1351618921 instance=ExtResource("7_i7141")]
+position = Vector2(379, 244)
+
+[node name="Pole6" parent="." unique_id=930224563 instance=ExtResource("2_rwgxs")]
+position = Vector2(150, 216)
+
+[node name="Label" type="Label" parent="." unique_id=366245314]
+offset_left = 106.0
+offset_top = 65.0
+offset_right = 274.0
+offset_bottom = 118.0
+text = "Every Line Has Its Bird
+"
+label_settings = ExtResource("11_e3hyu")
+
+[node name="Label2" type="Label" parent="." unique_id=2043020130]
+offset_left = 176.0
+offset_top = 94.0
+offset_right = 383.0
+offset_bottom = 117.0
+text = "Click the poles to start connecting"
+label_settings = SubResource("LabelSettings_q5onr")
+
+[node name="Pp" parent="." unique_id=831920880 instance=ExtResource("7_i7141")]
+position = Vector2(17, 217)
+
+[node name="Pp5" parent="." unique_id=1985420691 instance=ExtResource("7_i7141")]
+position = Vector2(374, 287)
+
+[connection signal="mouse_entered" from="RuleBoardTrigger" to="RuleBoard" method="_on_rule_board_trigger_mouse_entered"]
+[connection signal="mouse_exited" from="RuleBoardTrigger" to="RuleBoard" method="_on_rule_board_trigger_mouse_exited"]

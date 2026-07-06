@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://ejmbjefjqqbq"]
 
 [ext_resource type="Script" uid="uid://cxf5rew18br7c" path="res://scripts/cable.gd" id="1_rj3a4"]
+[ext_resource type="AudioStream" uid="uid://vsoaoiggtkkd" path="res://sounds/error.wav" id="4_ce67e"]
 
 [node name="Cable" type="Line2D" unique_id=641621345]
+points = PackedVector2Array(1572, 1576)
 width = 2.0
 default_color = Color(0.27058825, 0.26666668, 0.30980393, 1)
 script = ExtResource("1_rj3a4")
+length = 82.0
+gravity = Vector2(0, 170)
+sfx_error = ExtResource("4_ce67e")
