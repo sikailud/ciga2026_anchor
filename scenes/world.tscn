@@ -18,7 +18,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:label_settings:font_color")
+tracks/0/path = NodePath("CenterContainer/Label:label_settings:font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,7 +30,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/path = NodePath("CenterContainer/Label2:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -46,7 +46,7 @@ length = 9.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:label_settings:font_color")
+tracks/0/path = NodePath("CenterContainer/Label:label_settings:font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,14 +58,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/path = NodePath("CenterContainer/Label2:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 4.4333334, 6.0333333),
-"transitions": PackedFloat32Array(1, 1, 0.4999999),
+"times": PackedFloat32Array(0, 0.5, 2.4666667, 4.233333, 6.4666667, 8.733334),
+"transitions": PackedFloat32Array(1, 0.4999999, 0.4999999, 1, 1, 0.4999999),
 "update": 0,
-"values": [Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 0)]
+"values": [Color(0.17254902, 0.3647059, 0.7372549, 0), Color(0.17254902, 0.3647059, 0.7372549, 0), Color(0.17254902, 0.3647059, 0.7372549, 0), Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 1), Color(0.17254902, 0.3647059, 0.7372549, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8fc1"]
@@ -76,6 +76,11 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kchvy"]
 size = Vector2(79, 68)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jhx03"]
+font = ExtResource("12_q5onr")
+font_size = 18
+font_color = Color(0.17254902, 0.3647059, 0.7372549, 1)
 
 [sub_resource type="GDScript" id="GDScript_kchvy"]
 script/source = "extends Label
@@ -110,7 +115,7 @@ texture = ExtResource("8_4mrxx")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1819480577]
 stream = ExtResource("6_q5onr")
-volume_db = -16.0
+volume_db = -20.0
 autoplay = true
 
 [node name="RuleBoardTrigger" type="Area2D" parent="." unique_id=1555468599]
@@ -125,13 +130,13 @@ offset_top = 5.0
 offset_right = 50.0
 offset_bottom = 28.0
 text = "fn~"
-label_settings = ExtResource("11_e3hyu")
+label_settings = SubResource("LabelSettings_jhx03")
 script = SubResource("GDScript_kchvy")
 metadata/_edit_use_anchors_ = true
 
 [node name="RuleBoard" type="Sprite2D" parent="." unique_id=799391261]
-position = Vector2(81, 17)
-scale = Vector2(0.9999999, 1.0000002)
+position = Vector2(63, 17)
+scale = Vector2(0.642857, 0.6428573)
 texture = ExtResource("9_w7kh3")
 script = ExtResource("9_7r4gi")
 
@@ -174,28 +179,32 @@ position = Vector2(379, 244)
 [node name="Pole6" parent="." unique_id=930224563 instance=ExtResource("2_rwgxs")]
 position = Vector2(150, 216)
 
-[node name="Label" type="Label" parent="." unique_id=366245314]
-offset_left = 106.0
-offset_top = 65.0
-offset_right = 274.0
-offset_bottom = 118.0
-text = "Every Line Has Its Bird
-"
-label_settings = ExtResource("11_e3hyu")
-
-[node name="Label2" type="Label" parent="." unique_id=2043020130]
-offset_left = 176.0
-offset_top = 94.0
-offset_right = 383.0
-offset_bottom = 117.0
-text = "Click the poles to start connecting"
-label_settings = SubResource("LabelSettings_q5onr")
-
 [node name="Pp" parent="." unique_id=831920880 instance=ExtResource("7_i7141")]
 position = Vector2(17, 217)
 
 [node name="Pp5" parent="." unique_id=1985420691 instance=ExtResource("7_i7141")]
 position = Vector2(374, 287)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2106762394]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 400.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=366245314]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Every Line Has Its Bird
+"
+label_settings = ExtResource("11_e3hyu")
+
+[node name="Label2" type="Label" parent="CenterContainer" unique_id=2043020130]
+layout_mode = 2
+text = "Click the poles to start connecting"
+label_settings = SubResource("LabelSettings_q5onr")
 
 [connection signal="mouse_entered" from="RuleBoardTrigger" to="RuleBoard" method="_on_rule_board_trigger_mouse_entered"]
 [connection signal="mouse_exited" from="RuleBoardTrigger" to="RuleBoard" method="_on_rule_board_trigger_mouse_exited"]
